@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
         builder: (context, constraints) {
           return Center(
             child: Container(
-              color: Colors.yellow,
+              // color: Colors.yellow,
               height: constraints.maxHeight * 0.65,
               child: DiaryList(),
             ),

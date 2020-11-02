@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory/screens/story_overview.dart';
 
 class DiaryList extends StatelessWidget {
   final PageController _pageController = PageController(viewportFraction: 0.9);
@@ -8,10 +9,38 @@ class DiaryList extends StatelessWidget {
       itemCount: 10,
       controller: _pageController,
       itemBuilder: (BuildContext context, int index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 4),
+        return StoryCard(index: index);
+      },
+    );
+  }
+}
+
+class StoryCard extends StatelessWidget {
+  final index;
+  const StoryCard({
+    Key key,
+    @required this.index,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _openStoryOfIndex(index, context),
+      child: Container(
+        // color: Colors.lightBlue,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
           child: Container(
+            // margin: const EdgeInsets.all(4),
             decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(1, 5), // changes position of shadow
+                )
+              ],
               image: DecorationImage(
                 fit: BoxFit.fill,
                 image: NetworkImage(
@@ -24,12 +53,14 @@ class DiaryList extends StatelessWidget {
               alignment: Alignment.center,
               children: [
                 Positioned(
+                  left: 40,
+                  right: 40,
                   bottom: 20,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        'Some big ass \nRocks to climb',
+                        'Some big ass \nRocks to climb Rocks to climb ',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -37,9 +68,9 @@ class DiaryList extends StatelessWidget {
                             fontSize: 30,
                             fontWeight: FontWeight.bold),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 20),
                       Text(
-                        'Today i crossed a big one from my bucket list.\nThe grand canyon red rocks',
+                        'Today i crossed a big one from my bucket list.The grand canyon red rocks',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -47,32 +78,33 @@ class DiaryList extends StatelessWidget {
                           fontSize: 18,
                         ),
                       ),
-                      const SizedBox(height: 8),
-                      OutlineButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
+                      const SizedBox(height: 20),
+                      SizedBox(
+                        width: 220,
+                        height: 44,
+                        child: OutlineButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          child: Text(
+                            '阅读',
+                            maxLines: 1,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          textColor: Colors.white,
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                            width: 1,
+                          ),
+                          onPressed: () => null,
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 120,
-                          vertical: 15,
-                        ),
-                        child: Text(
-                          '阅读',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        textColor: Colors.white,
-                        borderSide: BorderSide(
-                          color: Colors.white,
-                          width: 1,
-                        ),
-                        onPressed: () => null,
                       ),
                     ],
                   ),
                 ),
                 Positioned(
-                  top: 20,
-                  left: 10,
+                  top: 40,
+                  left: 40,
                   child: Row(
                     children: [
                       Icon(Icons.location_on, color: Colors.white),
@@ -87,8 +119,17 @@ class DiaryList extends StatelessWidget {
               ],
             ),
           ),
-        );
-      },
+        ),
+      ),
+    );
+  }
+
+  void _openStoryOfIndex(int index, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StoryOverviewScreen(),
+      ),
     );
   }
 }
