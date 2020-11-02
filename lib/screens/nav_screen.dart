@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memory/screens/screens.dart';
 import 'package:memory/widgets/custom_tabbar.dart';
 
 class NavScreen extends StatefulWidget {
@@ -8,16 +9,12 @@ class NavScreen extends StatefulWidget {
 
 class _NavScreenState extends State<NavScreen> {
   final List<Widget> _screens = [
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
+    HomeScreen(),
+    SearchScreen(),
+    UserScreen(),
   ];
 
-  final List<IconData> _icons = const [
-    Icons.home,
-    Icons.ondemand_video,
-    Icons.menu,
-  ];
+  final List<IconData> _icons = const [Icons.home, Icons.search, Icons.person];
 
   int _selectedIndex = 0;
 
