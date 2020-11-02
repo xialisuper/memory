@@ -21,9 +21,54 @@ class DiaryList extends StatelessWidget {
               borderRadius: const BorderRadius.all(Radius.circular(8)),
             ),
             child: Stack(
+              alignment: Alignment.center,
               children: [
                 Positioned(
-                  child: ,
+                  bottom: 20,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Some big ass \nRocks to climb',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Today i crossed a big one from my bucket list.\nThe grand canyon red rocks',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      OutlineButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 120,
+                          vertical: 15,
+                        ),
+                        child: Text(
+                          '阅读',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        textColor: Colors.white,
+                        borderSide: BorderSide(
+                          color: Colors.white,
+                          width: 1,
+                        ),
+                        onPressed: () => null,
+                      ),
+                    ],
+                  ),
                 ),
                 Positioned(
                   top: 20,
